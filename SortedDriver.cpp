@@ -63,8 +63,36 @@ getWords(size_t numWords, size_t wordLength, string alphabet)
 double
 mostIsolated(vector<double> & number)
 {
-	// STUB  STUB  STUB
-	return -123.456;
+	double highdiff(0);
+	double lowdiff(0);
+	double totdiff(0);
+
+	double x(number[0]);
+	std::sort(number.begin(), number.end());
+	for (int i = 1; i < number.size() - 1; i++)
+	{
+
+		highdiff = number[i + 1] - number[i];
+		lowdiff = number[i] - number[i - 1];
+
+		if (totdiff < highdiff + lowdiff)
+		{
+			totdiff = highdiff + lowdiff;
+			x = (number[i]);
+		}
+	}
+	if (totdiff < number[1] - number[0])
+	{
+		totdiff = highdiff + lowdiff;
+		x = (number[0]);
+	}
+	if (totdiff < number[number.size() - 1] - number[number.size() - 2])
+	{
+		totdiff = highdiff + lowdiff;
+		x = (number[number.size() - 1]);
+	}
+
+	return x;
 }
 
 
@@ -74,8 +102,27 @@ mostIsolated(vector<double> & number)
 int
 unmatched(list<string> & A, list<string> & B)
 {
-	// STUB  STUB  STUB
-	return -1;
+	int totequal(A.size());
+	int notequal(0);
+	list<string>::iterator itA;
+	list<string>::iterator itB;
+	for (itA = A.begin(); itA != A.end(); itA++)
+	{
+		int temp = totequal;
+		for (itB = B.begin(); itB != B.end(); itB++)
+		{
+			if (*itA == *itB)
+			{
+				totequal--;
+
+			}
+		}
+		if (totequal == temp)
+		{
+			notequal++;
+		}
+	}
+	return notequal;
 }
 
 
